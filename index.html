@@ -292,9 +292,40 @@ footer{color:var(--muted);font-size:.85rem;text-align:center;padding:10px 0 40px
 .bat-cam figure img{display:block;width:100%;height:auto}
 .bat-cam figure .dl{display:inline-block;margin:10px;background:#f5c518;color:#14161c;text-decoration:none;font-weight:800;padding:10px 18px;border-radius:999px}
 @media print{.bat-cam{display:none}}
+/* Barra de progreso del viaje (pedido de Guido 4/11) */
+.trip-bar{max-width:860px;margin:12px auto 0;padding:0 16px}
+.trip-bar .tb{background:var(--card);border:1.5px solid #f1cdbd;border-radius:14px;padding:10px 14px;box-shadow:0 1px 2px rgba(60,30,10,.04)}
+.trip-bar .tb-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-family:var(--head);font-weight:800;font-size:.95rem}
+.trip-bar .tb-top span:last-child{color:var(--accent);white-space:nowrap}
+.trip-bar .tb-track{height:10px;background:var(--accent-soft);border-radius:99px;overflow:hidden;margin:8px 0 6px}
+.trip-bar .tb-fill{height:100%;width:0;background:linear-gradient(90deg,#e9875f,var(--accent));border-radius:99px;transition:width .6s ease}
+.trip-bar .tb-line{margin:0;color:var(--muted);font-size:.9rem;line-height:1.35}
+.trip-bar .tb.done{border-color:#bfe2cc;background:var(--green-soft)}.trip-bar .tb.done .tb-fill{background:var(--green)}.trip-bar .tb.done .tb-top span:last-child{color:var(--green)}
+@media print{.trip-bar{display:none}}
+/* Reto de papá (pedido de Guido 4/11) */
+.reto{margin-top:16px}
+.reto textarea{display:block;width:100%;min-height:110px;resize:vertical;font:inherit;font-size:1rem;color:var(--ink);background:#fffaf6;border:1.5px solid var(--line);border-radius:14px;padding:12px 14px}
+.reto textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.reto .rt-meta{display:flex;justify-content:space-between;gap:10px;font-size:.85rem;color:var(--muted);margin:6px 2px 0}
+.reto .rt-big{display:block;width:100%;margin-top:12px;background:var(--accent);color:#fff;border:0;border-radius:14px;padding:16px;font:inherit;font-size:1.15rem;font-weight:800;cursor:pointer;text-align:center;text-decoration:none}
+.reto .rt-big:disabled{opacity:.55;cursor:default}
+.reto .rt-load{color:var(--accent);font-weight:700;text-align:center;margin-top:12px}
+.reto .rt-spin{display:inline-block;width:16px;height:16px;border:3px solid #c4502b44;border-top-color:var(--accent);border-radius:50%;animation:bcs 1s linear infinite;vertical-align:-3px}
+.reto .rt-err{color:#a12a1a;font-weight:700;margin-top:10px}
+.reto .rt-cap{background:var(--amber-soft);color:var(--amber);border-radius:12px;padding:10px 12px;font-weight:600;margin-top:10px}
+.reto figure{margin:14px auto 0;max-width:340px;text-align:center}
+.reto video{display:block;width:100%;aspect-ratio:9/16;background:#000;border-radius:14px;border:2px solid var(--accent)}
+.reto [hidden]{display:none!important}
+@media print{.reto{display:none}}
 </style>
 </head>
 <body>
+
+<div class="trip-bar" id="trip-bar" hidden>
+  <div class="tb" id="tb"><div class="tb-top"><span id="tb-title">✈️ El viaje de papá y mamá</span><span id="tb-day"></span></div>
+  <div class="tb-track" role="progressbar" aria-label="Progreso del viaje" aria-valuemin="0" aria-valuemax="100" id="tb-track"><div class="tb-fill" id="tb-fill"></div></div>
+  <p class="tb-line" id="tb-line"></p></div>
+</div>
 
 <header class="top wrap">
   <span class="kicker">Guía para los abuelos</span>
@@ -310,6 +341,7 @@ footer{color:var(--muted);font-size:.85rem;text-align:center;padding:10px 0 40px
     <li><a href="#mila">Mila</a></li>
     <li><a href="#felipe">Felipe</a></li>
     <li><a href="#batman">Batman</a></li>
+    <li><a href="#reto">Reto de papá</a></li>
     <li><a href="#recomendaciones">Salir a comer</a></li>
     <li><a href="#medicacion">Medicación</a></li>
     <li><a href="#documentos">Documentos</a></li>
@@ -436,6 +468,20 @@ footer{color:var(--muted);font-size:.85rem;text-align:center;padding:10px 0 40px
     <p id="bc-err" class="bc-err" role="alert" hidden></p>
     <figure id="bc-res" hidden><img id="bc-img" alt="Batman comiendo lo mismo que Felipe"><a id="bc-dl" class="dl" download="batman-come-lo-mismo.jpg">⬇️ Descargar</a></figure>
   </div>
+</section>
+
+<!-- RETO DE PAPÁ -->
+<section id="reto" class="card reto" aria-labelledby="h-reto">
+  <div class="sec-head"><span class="sec-ico" style="background:var(--accent-soft)" aria-hidden="true">🎬</span><h2 id="h-reto">Reto de papá</h2></div>
+  <p class="sec-sub">¿Se portaron mal? Escribí lo que querés que les diga papá y en un par de minutos aparece un video de él diciéndolo, con su voz.</p>
+  <label for="rt-text" class="sr-only" style="position:absolute;left:-9999px">Mensaje de papá</label>
+  <textarea id="rt-text" maxlength="400" placeholder="Ej.: Mila, Felipe, me contaron los abuelos que no se quieren bañar. Hagan caso, que si no, no hay postre. ¡Los quiero mucho!"></textarea>
+  <div class="rt-meta"><span id="rt-left">Hoy quedan — retos</span><span id="rt-count">0/400</span></div>
+  <button type="button" id="rt-go" class="rt-big">🎬 Generar reto</button>
+  <p id="rt-load" class="rt-load" hidden><span class="rt-spin"></span> Papá está grabando… puede tardar 2 o 3 minutos</p>
+  <p id="rt-err" class="rt-err" role="alert" hidden></p>
+  <p id="rt-cap" class="rt-cap" hidden>Papá ya grabó todos los retos de hoy 😅 Mañana puede grabar más. Mientras tanto, un reto en vivo de los abuelos también funciona.</p>
+  <figure id="rt-res" hidden><video id="rt-vid" playsinline controls preload="metadata"></video><a id="rt-dl" class="rt-big" download="reto-de-papa.mp4">⬇️ Descargar video</a></figure>
 </section>
 
 <!-- RECOMENDACIONES -->
@@ -688,6 +734,77 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[href^="#
       else err('Uy, Batman no pudo llegar a la mesa. Fijate que tengas internet y probá de nuevo en un ratito.');
     }).finally(function(){go.disabled=false;show($('bc-load'),0)});
   });
+})();
+</script>
+<script>
+// Barra de progreso del viaje: 7 al 15 de noviembre de 2026, hora de Buenos Aires.
+(function(){
+  var el=document.getElementById('trip-bar');if(!el)return;
+  var LINES=[
+    'Arrancamos. Los abuelos todavía tienen energía (disfrútenla).',
+    'Ya saben dónde está todo… menos el otro zapato de Felipe.',
+    'El mate se toma frío y nadie se queja. Así es la vida ahora.',
+    'Si alguien pregunta, sí: la tele cuenta como actividad educativa.',
+    'Mitad del viaje. Sobrevivieron a todo: ya son profesionales.',
+    'Los chicos ganan por puntos, pero los abuelos siguen de pie.',
+    'Si aparece una media sola, es normal. Es parte del sistema.',
+    'Último esfuerzo: mañana empiezan a volver los refuerzos.',
+    'Ya casi: aguanten que vuelven los refuerzos 💪'];
+  var ba=new Date(Date.now()-3*3600e3), today=Date.UTC(ba.getUTCFullYear(),ba.getUTCMonth(),ba.getUTCDate());
+  var start=Date.UTC(2026,10,7), n=Math.round((today-start)/864e5)+1, total=9, pct, day, line;
+  var $=function(i){return document.getElementById(i)};
+  if(n<1){var f=1-n;pct=0;day=f===1?'Falta 1 día':'Faltan '+f+' días';
+    line=f===1?'Mañana arranca la aventura de los abuelos. Respiren hondo.':'Faltan '+f+' días para que arranque la aventura de los abuelos.';}
+  else if(n<=total){pct=Math.round(n/total*100);day='Día '+n+' de '+total;line=LINES[n-1];}
+  else{pct=100;day='100%';line='¡Misión cumplida! Volvieron papá y mamá 🎉';$('tb').classList.add('done');}
+  $('tb-day').textContent=day;$('tb-line').textContent=line;$('tb-track').setAttribute('aria-valuenow',pct);
+  el.hidden=false;requestAnimationFrame(function(){$('tb-fill').style.width=pct+'%'});
+})();
+</script>
+<script>
+// Reto de papá: video con el avatar de Guido (HeyGen vía el Worker; la clave nunca está en la página).
+(function(){
+  var API='https://batman-proxy.wonderlab-ar.workers.dev', $=function(i){return document.getElementById(i)};
+  var ta=$('rt-text');if(!ta)return;
+  var go=$('rt-go'),timer=null,misses=0,t0=0,KEY='retoPendiente';
+  function show(el,v){el.hidden=!v}
+  function err(t){$('rt-err').textContent=t;show($('rt-err'),1)}
+  function left(n){if(typeof n!=='number')return;$('rt-left').textContent=n===1?'Hoy queda 1 reto':'Hoy quedan '+n+' retos';
+    var cap=n<=0;show($('rt-cap'),cap);if(!timer)go.disabled=cap;}
+  function count(){$('rt-count').textContent=ta.value.length+'/400'}
+  ta.addEventListener('input',count);count();
+  fetch(API+'/reto').then(function(r){return r.json()}).then(function(j){left(j.remaining)}).catch(function(){});
+  function done(){clearTimeout(timer);timer=null;show($('rt-load'),0);try{localStorage.removeItem(KEY)}catch(e){};go.disabled=false}
+  function poll(id){
+    timer=setTimeout(function(){
+      fetch(API+'/reto/'+id).then(function(r){return r.json().then(function(j){return{ok:r.ok,j:j}})}).then(function(x){
+        var j=x.j;left(j.remaining);
+        if(j.status==='done'){done();var v=$('rt-vid');v.src=j.url;$('rt-dl').href=j.download;show($('rt-res'),1);
+          $('rt-res').scrollIntoView({behavior:'smooth',block:'center'});left(j.remaining);return}
+        if(j.status==='failed'){done();err('Uy, el video no salió. Probá de nuevo en un ratito (este no se descontó).');return}
+        if(!x.ok&&++misses>3){done();err('Uy, se perdió la grabación. Probá de nuevo en un ratito.');return}
+        if(Date.now()-t0>15*60e3){done();err('Está tardando demasiado. Probá de nuevo más tarde.');return}
+        poll(id);
+      }).catch(function(){if(++misses>6){done();err('Parece que no hay internet. Fijate la conexión y probá de nuevo.')}else poll(id)});
+    },10000);
+  }
+  function start(id){t0=Date.now();misses=0;go.disabled=true;show($('rt-err'),0);show($('rt-res'),0);show($('rt-load'),1);
+    $('rt-load').scrollIntoView({behavior:'smooth',block:'center'});poll(id)}
+  go.addEventListener('click',function(){
+    var text=ta.value.trim();show($('rt-err'),0);
+    if(!text){err('Primero escribí lo que querés que diga papá.');ta.focus();return}
+    go.disabled=true;show($('rt-res'),0);show($('rt-load'),1);
+    fetch(API+'/reto',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:text})})
+      .then(function(r){return r.json().then(function(j){if(!r.ok)throw j;return j})})
+      .then(function(j){left(j.remaining);try{localStorage.setItem(KEY,JSON.stringify({id:j.id,t:Date.now()}))}catch(e){};start(j.id)})
+      .catch(function(j){show($('rt-load'),0);go.disabled=false;var e=j&&j.error;
+        if(e==='cap'){left(0)}
+        else if(e==='long')err('El mensaje es muy largo. Probá con algo más corto (hasta 400 letras).');
+        else if(e==='empty')err('Primero escribí lo que querés que diga papá.');
+        else err('Uy, papá no pudo grabar ahora. Fijate que tengas internet y probá de nuevo en un ratito.')});
+  });
+  // Si se recargó la página mientras grababa, sigue esperando el mismo video.
+  try{var p=JSON.parse(localStorage.getItem(KEY)||'null');if(p&&p.id&&Date.now()-p.t<20*60e3)start(p.id);else localStorage.removeItem(KEY)}catch(e){}
 })();
 </script>
 </body>
