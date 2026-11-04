@@ -66,6 +66,9 @@ main{padding:16px 0 40px}
 .timeline .where{font-weight:600;line-height:1.25}
 .timeline .where small{display:block;font-weight:400;color:var(--muted);font-size:.8rem}
 .quick{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+/* Teléfonos: que no se corten en celular */
+.quick .tile{min-width:0}
+@media (max-width:480px){.quick{grid-template-columns:1fr}}
 .quick .tile{border-radius:14px;padding:12px;background:var(--green-soft)}
 .quick .tile.blue{background:var(--blue-soft)}
 .tile .lbl{font-size:.78rem;color:var(--muted);font-weight:600}
