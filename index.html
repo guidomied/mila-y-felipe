@@ -297,9 +297,8 @@ footer{color:var(--muted);font-size:.85rem;text-align:center;padding:10px 0 40px
 .trip-bar .tb{background:var(--card);border:1.5px solid #f1cdbd;border-radius:14px;padding:10px 14px;box-shadow:0 1px 2px rgba(60,30,10,.04)}
 .trip-bar .tb-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-family:var(--head);font-weight:800;font-size:.95rem}
 .trip-bar .tb-top span:last-child{color:var(--accent);white-space:nowrap}
-.trip-bar .tb-track{height:10px;background:var(--accent-soft);border-radius:99px;overflow:hidden;margin:8px 0 6px}
+.trip-bar .tb-track{height:10px;background:var(--accent-soft);border-radius:99px;overflow:hidden;margin:8px 0 2px}
 .trip-bar .tb-fill{height:100%;width:0;background:linear-gradient(90deg,#e9875f,var(--accent));border-radius:99px;transition:width .6s ease}
-.trip-bar .tb-line{margin:0;color:var(--muted);font-size:.9rem;line-height:1.35}
 .trip-bar .tb.done{border-color:#bfe2cc;background:var(--green-soft)}.trip-bar .tb.done .tb-fill{background:var(--green)}.trip-bar .tb.done .tb-top span:last-child{color:var(--green)}
 @media print{.trip-bar{display:none}}
 /* Reto de papá (pedido de Guido 4/11) */
@@ -322,9 +321,8 @@ footer{color:var(--muted);font-size:.85rem;text-align:center;padding:10px 0 40px
 <body>
 
 <div class="trip-bar" id="trip-bar" hidden>
-  <div class="tb" id="tb"><div class="tb-top"><span id="tb-title">✈️ El viaje de papá y mamá</span><span id="tb-day"></span></div>
-  <div class="tb-track" role="progressbar" aria-label="Progreso del viaje" aria-valuemin="0" aria-valuemax="100" id="tb-track"><div class="tb-fill" id="tb-fill"></div></div>
-  <p class="tb-line" id="tb-line"></p></div>
+  <div class="tb" id="tb"><div class="tb-top"><span id="tb-title">✈️ El viaje</span><span id="tb-day"></span></div>
+  <div class="tb-track" role="progressbar" aria-label="Progreso del viaje" aria-valuemin="0" aria-valuemax="100" id="tb-track"><div class="tb-fill" id="tb-fill"></div></div></div>
 </div>
 
 <header class="top wrap">
@@ -740,24 +738,13 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[href^="#
 // Barra de progreso del viaje: 7 al 15 de noviembre de 2026, hora de Buenos Aires.
 (function(){
   var el=document.getElementById('trip-bar');if(!el)return;
-  var LINES=[
-    'Arrancamos. Los abuelos todavía tienen energía (disfrútenla).',
-    'Ya saben dónde está todo… menos el otro zapato de Felipe.',
-    'El mate se toma frío y nadie se queja. Así es la vida ahora.',
-    'Si alguien pregunta, sí: la tele cuenta como actividad educativa.',
-    'Mitad del viaje. Sobrevivieron a todo: ya son profesionales.',
-    'Los chicos ganan por puntos, pero los abuelos siguen de pie.',
-    'Si aparece una media sola, es normal. Es parte del sistema.',
-    'Último esfuerzo: mañana empiezan a volver los refuerzos.',
-    'Ya casi: aguanten que vuelven los refuerzos 💪'];
   var ba=new Date(Date.now()-3*3600e3), today=Date.UTC(ba.getUTCFullYear(),ba.getUTCMonth(),ba.getUTCDate());
-  var start=Date.UTC(2026,10,7), n=Math.round((today-start)/864e5)+1, total=9, pct, day, line;
+  var start=Date.UTC(2026,10,7), n=Math.round((today-start)/864e5)+1, total=9, pct, day;
   var $=function(i){return document.getElementById(i)};
-  if(n<1){var f=1-n;pct=0;day=f===1?'Falta 1 día':'Faltan '+f+' días';
-    line=f===1?'Mañana arranca la aventura de los abuelos. Respiren hondo.':'Faltan '+f+' días para que arranque la aventura de los abuelos.';}
-  else if(n<=total){pct=Math.round(n/total*100);day='Día '+n+' de '+total;line=LINES[n-1];}
-  else{pct=100;day='100%';line='¡Misión cumplida! Volvieron papá y mamá 🎉';$('tb').classList.add('done');}
-  $('tb-day').textContent=day;$('tb-line').textContent=line;$('tb-track').setAttribute('aria-valuenow',pct);
+  if(n<1){var f=1-n;pct=0;day=f===1?'Falta 1 día para el viaje':'Faltan '+f+' días para el viaje';}
+  else if(n<=total){pct=Math.round(n/total*100);day='Día '+n+' de '+total+' · '+pct+'%';}
+  else{pct=100;day='Viaje terminado · 100%';$('tb').classList.add('done');}
+  $('tb-day').textContent=day;$('tb-track').setAttribute('aria-valuenow',pct);
   el.hidden=false;requestAnimationFrame(function(){$('tb-fill').style.width=pct+'%'});
 })();
 </script>
