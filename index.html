@@ -267,6 +267,16 @@ footer{color:var(--muted);font-size:.85rem;text-align:center;padding:10px 0 40px
 .bat-gal img{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:cover}
 .bat-gal figcaption{padding:6px 10px;color:#f5c518;font-weight:700;font-size:.9rem}
 @media print{.bat-gal .gal{flex-wrap:wrap}.bat-gal figure{flex:0 0 30%}}
+.bat-gal figcaption{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.bat-gal a.dl{flex:none;background:#f5c518;color:#14161c;text-decoration:none;font-size:.8rem;font-weight:800;padding:5px 9px;border-radius:999px}
+.bat-prompt{margin-top:10px;padding-top:10px;border-top:1px dashed #f5c51866}
+.bat-prompt label{display:block;font-weight:700;margin:8px 0 4px;color:#f5c518;font-size:.9rem}
+.bat-prompt input,.bat-prompt select,.bat-prompt textarea{width:100%;box-sizing:border-box;background:#0d0e12;color:#e9e6dc;border:1px solid #444a58;border-radius:10px;padding:10px;font:inherit;font-size:16px}
+.bat-prompt textarea{margin-top:10px;resize:vertical}
+.bat-prompt button,.bat-prompt .bp-actions a{display:inline-block;margin-top:10px;background:#f5c518;color:#14161c;border:0;border-radius:999px;padding:9px 14px;font-weight:800;font:inherit;font-weight:800;text-decoration:none;cursor:pointer}
+.bp-actions{display:flex;flex-wrap:wrap;gap:8px}
+.bp-actions a{background:#2a2d36!important;color:#f5c518!important;border:1px solid #f5c518!important}
+@media print{.bat-prompt{display:none}}
 </style>
 </head>
 <body>
@@ -366,12 +376,32 @@ footer{color:var(--muted);font-size:.85rem;text-align:center;padding:10px 0 40px
   <div class="night"><h3>🧷 Pañal</h3><p>Felipe usa pañales talle <b>XG</b>.</p></div>
   <div class="night bat-gal"><h3>🦇 Batman también come</h3><p>Para convencer a Felipe de que coma: mostrale lo que come Batman para tener superfuerza.</p>
   <div class="gal">
-    <figure><img src="batman/batman-1.jpg" alt="Batman comiendo milanesa con puré y tomatitos" loading="lazy" width="540" height="720"><figcaption>Milanesa con puré y tomatitos</figcaption></figure>
-    <figure><img src="batman/batman-2.jpg" alt="Batman comiendo fideos con brócoli" loading="lazy" width="540" height="720"><figcaption>Fideos con brócoli</figcaption></figure>
-    <figure><img src="batman/batman-3.jpg" alt="Batman comiendo sopa" loading="lazy" width="540" height="720"><figcaption>Sopa</figcaption></figure>
-    <figure><img src="batman/batman-4.jpg" alt="Batman comiendo choclo" loading="lazy" width="540" height="720"><figcaption>Choclo</figcaption></figure>
-    <figure><img src="batman/batman-5.jpg" alt="Batman comiendo frutillas" loading="lazy" width="540" height="720"><figcaption>Frutillas</figcaption></figure>
-  </div></div>
+    <figure><img src="batman/batman-1.jpg" alt="Batman comiendo milanesa con puré y tomatitos" loading="lazy" width="540" height="720"><figcaption><span>Milanesa con puré y tomatitos</span><a class="dl" href="batman/full/batman-1.jpg" download="batman-comiendo-1.jpg" aria-label="Descargar foto: Milanesa con puré y tomatitos">⬇️ Descargar</a></figcaption></figure>
+    <figure><img src="batman/batman-2.jpg" alt="Batman comiendo fideos con brócoli" loading="lazy" width="540" height="720"><figcaption><span>Fideos con brócoli</span><a class="dl" href="batman/full/batman-2.jpg" download="batman-comiendo-2.jpg" aria-label="Descargar foto: Fideos con brócoli">⬇️ Descargar</a></figcaption></figure>
+    <figure><img src="batman/batman-3.jpg" alt="Batman comiendo sopa" loading="lazy" width="540" height="720"><figcaption><span>Sopa</span><a class="dl" href="batman/full/batman-3.jpg" download="batman-comiendo-3.jpg" aria-label="Descargar foto: Sopa">⬇️ Descargar</a></figcaption></figure>
+    <figure><img src="batman/batman-4.jpg" alt="Batman comiendo choclo" loading="lazy" width="540" height="720"><figcaption><span>Choclo</span><a class="dl" href="batman/full/batman-4.jpg" download="batman-comiendo-4.jpg" aria-label="Descargar foto: Choclo">⬇️ Descargar</a></figcaption></figure>
+    <figure><img src="batman/batman-5.jpg" alt="Batman comiendo frutillas" loading="lazy" width="540" height="720"><figcaption><span>Frutillas</span><a class="dl" href="batman/full/batman-5.jpg" download="batman-comiendo-5.jpg" aria-label="Descargar foto: Frutillas">⬇️ Descargar</a></figcaption></figure>
+  </div>
+  <div class="bat-prompt">
+    <h3 class="sub">🎨 Crear tu propio Batman comiendo</h3>
+    <p>Escribí la comida, tocá <b>Armar texto</b> y pegalo en Grok o ChatGPT para que te haga la imagen.</p>
+    <label for="bp-food">¿Qué comida?</label>
+    <input id="bp-food" type="text" placeholder="Ej.: arroz con pollo, banana, brócoli" autocomplete="off">
+    <label for="bp-place">¿Dónde?</label>
+    <select id="bp-place">
+      <option value="en la Baticueva, rodeado de pantallas azules y computadoras">En la Baticueva</option>
+      <option value="en la biblioteca de la Mansión Wayne, con estantes de libros de madera">En la Mansión Wayne</option>
+      <option value="en la terraza de un edificio de Ciudad Gótica, de noche, con la Batiseñal en el cielo">En una terraza de Ciudad Gótica</option>
+    </select>
+    <button type="button" id="bp-go">Armar texto</button>
+    <textarea id="bp-out" rows="5" readonly placeholder="Acá aparece el texto para pedir la imagen"></textarea>
+    <div class="bp-actions" id="bp-actions" hidden>
+      <button type="button" id="bp-copy">📋 Copiar</button>
+      <a id="bp-grok" href="#" target="_blank" rel="noopener">Abrir en Grok</a>
+      <a id="bp-gpt" href="#" target="_blank" rel="noopener">Abrir en ChatGPT</a>
+    </div>
+  </div>
+  </div>
   <h3 class="sub">Semana de Felipe</h3>
   <div class="cal"><div class="day"><div class="d">Lun a vie</div><ul><li><b>Jardín</b><span>09:20 a 12:15</span></li></ul></div><div class="day we"><div class="d">Sáb, dom<small>y feriados</small></div><ul><li><b>Colonia</b><span>14:30 a 18:00</span></li></ul></div><div class="day we"><div class="d">Lun 9<small>noviembre</small></div><ul><li class="hl"><b>Hay colonia</b><span>14:30 a 18:00</span></li></ul></div><div class="day off"><div class="d">Mar 10<small>noviembre</small></div><ul><li class="no"><b>✕ No hay colonia</b><span></span></li></ul></div></div>
   <h3 class="sub">Jardín: sala y maestras</h3>
@@ -596,6 +626,26 @@ footer{color:var(--muted);font-size:.85rem;text-align:center;padding:10px 0 40px
 </script>
 <script>
 document.addEventListener('click',function(e){var a=e.target.closest('a[href^="#"]');if(!a)return;var el=document.getElementById(a.getAttribute('href').slice(1));if(!el)return;e.preventDefault();if(el.tagName==='DETAILS')el.open=true;var d=el.closest('details');if(d)d.open=true;el.scrollIntoView({behavior:'smooth',block:'start'});});
+</script>
+<script>
+(function(){
+  var f=document.getElementById('bp-food'),pl=document.getElementById('bp-place'),o=document.getElementById('bp-out'),acts=document.getElementById('bp-actions');
+  if(!f)return;
+  function armar(){
+    var c=f.value.trim(); if(!c){f.focus();f.placeholder='Escribí una comida primero';return;}
+    var t='Imagen hiperrealista, estilo película, de Batman con su traje negro y su máscara, sentado '+pl.value+', comiendo '+c+' con muchas ganas y cara de que le encanta. Al lado tiene una botellita de agua azul. Formato vertical 3:4, iluminación oscura y dramática, apta para chicos, sin textos ni letras.';
+    o.value=t; acts.hidden=false;
+    document.getElementById('bp-grok').href='https://grok.com/?q='+encodeURIComponent(t);
+    document.getElementById('bp-gpt').href='https://chatgpt.com/?q='+encodeURIComponent(t);
+  }
+  document.getElementById('bp-go').addEventListener('click',armar);
+  f.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();armar();}});
+  document.getElementById('bp-copy').addEventListener('click',function(){
+    var b=this; function ok(){b.textContent='✅ Copiado';setTimeout(function(){b.textContent='📋 Copiar';},2000);}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(o.value).then(ok,function(){o.select();document.execCommand('copy');ok();});}
+    else{o.select();document.execCommand('copy');ok();}
+  });
+})();
 </script>
 </body>
 </html>
