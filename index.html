@@ -303,6 +303,7 @@ footer{color:var(--muted);font-size:.85rem;text-align:center;padding:10px 0 40px
 @media print{.trip-bar{display:none}}
 /* Reto de papá (pedido de Guido 4/11) */
 .reto{margin-top:16px}
+.reto .rt-papa{flex:none;width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:50% 45%;border:2px solid var(--accent-soft);box-shadow:0 0 0 2px var(--accent)}
 .reto textarea{display:block;width:100%;min-height:110px;resize:vertical;font:inherit;font-size:1rem;color:var(--ink);background:#fffaf6;border:1.5px solid var(--line);border-radius:14px;padding:12px 14px}
 .reto textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
 .reto .rt-meta{display:flex;justify-content:space-between;gap:10px;font-size:.85rem;color:var(--muted);margin:6px 2px 0}
@@ -470,7 +471,7 @@ footer{color:var(--muted);font-size:.85rem;text-align:center;padding:10px 0 40px
 
 <!-- RETO DE PAPÁ -->
 <section id="reto" class="card reto" aria-labelledby="h-reto">
-  <div class="sec-head"><span class="sec-ico" style="background:var(--accent-soft)" aria-hidden="true">🎬</span><h2 id="h-reto">Reto de papá</h2></div>
+  <div class="sec-head"><img class="rt-papa" src="reto/papa.jpg" alt="Papá" width="64" height="64"><h2 id="h-reto">Reto de papá</h2></div>
   <p class="sec-sub">¿Se portaron mal? Escribí lo que querés que les diga papá y en un par de minutos aparece un video de él diciéndolo, con su voz.</p>
   <label for="rt-text" class="sr-only" style="position:absolute;left:-9999px">Mensaje de papá</label>
   <textarea id="rt-text" maxlength="400" placeholder="Ej.: Mila, Felipe, me contaron los abuelos que no se quieren bañar. Hagan caso, que si no, no hay postre. ¡Los quiero mucho!"></textarea>
