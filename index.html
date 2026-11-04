@@ -269,14 +269,18 @@ footer{color:var(--muted);font-size:.85rem;text-align:center;padding:10px 0 40px
 @media print{.bat-gal .gal{flex-wrap:wrap}.bat-gal figure{flex:0 0 30%}}
 .bat-gal figcaption{display:flex;justify-content:space-between;align-items:center;gap:8px}
 .bat-gal a.dl{flex:none;background:#f5c518;color:#14161c;text-decoration:none;font-size:.8rem;font-weight:800;padding:5px 9px;border-radius:999px}
-.bat-prompt{margin-top:10px;padding-top:10px;border-top:1px dashed #f5c51866}
-.bat-prompt label{display:block;font-weight:700;margin:8px 0 4px;color:#f5c518;font-size:.9rem}
-.bat-prompt input,.bat-prompt select,.bat-prompt textarea{width:100%;box-sizing:border-box;background:#0d0e12;color:#e9e6dc;border:1px solid #444a58;border-radius:10px;padding:10px;font:inherit;font-size:16px}
-.bat-prompt textarea{margin-top:10px;resize:vertical}
-.bat-prompt button,.bat-prompt .bp-actions a{display:inline-block;margin-top:10px;background:#f5c518;color:#14161c;border:0;border-radius:999px;padding:9px 14px;font-weight:800;font:inherit;font-weight:800;text-decoration:none;cursor:pointer}
-.bp-actions{display:flex;flex-wrap:wrap;gap:8px}
-.bp-actions a{background:#2a2d36!important;color:#f5c518!important;border:1px solid #f5c518!important}
-@media print{.bat-prompt{display:none}}
+.bat-cam{margin-top:10px;padding-top:10px;border-top:1px dashed #f5c51866}
+.bat-cam .bc-big{display:block;width:100%;box-sizing:border-box;margin-top:10px;background:#f5c518;color:#14161c;border:0;border-radius:14px;padding:16px;font:inherit;font-size:1.15rem;font-weight:800;text-align:center;cursor:pointer}
+.bat-cam #bc-prev{display:block;max-width:100%;max-height:280px;margin:12px auto 0;border:1px solid #f5c518;border-radius:12px}
+.bat-cam #bc-prev[hidden],.bat-cam [hidden]{display:none!important}
+.bc-load{color:#f5c518;font-weight:700;text-align:center;margin-top:12px}
+.bc-spin{display:inline-block;width:16px;height:16px;border:3px solid #f5c51855;border-top-color:#f5c518;border-radius:50%;animation:bcs 1s linear infinite;vertical-align:-3px}
+@keyframes bcs{to{transform:rotate(360deg)}}
+.bc-err{color:#ffb4a8;font-weight:700;margin-top:10px}
+.bat-cam figure{margin:12px 0 0;background:#0d0e12;border:2px solid #f5c518;border-radius:14px;overflow:hidden;text-align:center}
+.bat-cam figure img{display:block;width:100%;height:auto}
+.bat-cam figure .dl{display:inline-block;margin:10px;background:#f5c518;color:#14161c;text-decoration:none;font-weight:800;padding:10px 18px;border-radius:999px}
+@media print{.bat-cam{display:none}}
 </style>
 </head>
 <body>
@@ -384,24 +388,17 @@ footer{color:var(--muted);font-size:.85rem;text-align:center;padding:10px 0 40px
     <figure><img src="batman/batman-4.jpg" alt="Batman comiendo choclo" loading="lazy" width="540" height="720"><figcaption><span>Choclo</span><a class="dl" href="batman/full/batman-4.jpg" download="batman-comiendo-4.jpg" aria-label="Descargar foto: Choclo">⬇️ Descargar</a></figcaption></figure>
     <figure><img src="batman/batman-5.jpg" alt="Batman comiendo frutillas" loading="lazy" width="540" height="720"><figcaption><span>Frutillas</span><a class="dl" href="batman/full/batman-5.jpg" download="batman-comiendo-5.jpg" aria-label="Descargar foto: Frutillas">⬇️ Descargar</a></figcaption></figure>
   </div>
-  <div class="bat-prompt">
-    <h3 class="sub">🎨 Crear tu propio Batman comiendo</h3>
-    <p>Escribí la comida, tocá <b>Armar texto</b> y pegalo en Grok o ChatGPT para que te haga la imagen.</p>
-    <label for="bp-food">¿Qué comida?</label>
-    <input id="bp-food" type="text" placeholder="Ej.: arroz con pollo, banana, brócoli" autocomplete="off">
-    <label for="bp-place">¿Dónde?</label>
-    <select id="bp-place">
-      <option value="en la Baticueva, rodeado de pantallas azules y computadoras">En la Baticueva</option>
-      <option value="en la biblioteca de la Mansión Wayne, con estantes de libros de madera">En la Mansión Wayne</option>
-      <option value="en la terraza de un edificio de Ciudad Gótica, de noche, con la Batiseñal en el cielo">En una terraza de Ciudad Gótica</option>
-    </select>
-    <button type="button" id="bp-go">Armar texto</button>
-    <textarea id="bp-out" rows="5" readonly placeholder="Acá aparece el texto para pedir la imagen"></textarea>
-    <div class="bp-actions" id="bp-actions" hidden>
-      <button type="button" id="bp-copy">📋 Copiar</button>
-      <a id="bp-grok" href="#" target="_blank" rel="noopener">Abrir en Grok</a>
-      <a id="bp-gpt" href="#" target="_blank" rel="noopener">Abrir en ChatGPT</a>
-    </div>
+  <div class="bat-cam">
+    <h3 class="sub">📸 Batman come lo mismo que Felipe</h3>
+    <p>Sacale una foto al plato de Felipe y en unos segundos aparece Batman comiendo lo mismo.</p>
+    <label class="bc-big" for="bc-file">📸 Sacar foto del plato</label>
+    <input id="bc-file" type="file" accept="image/*" capture="environment" hidden>
+    <img id="bc-prev" alt="Foto del plato" hidden>
+    <button type="button" id="bc-go" class="bc-big" hidden>🦇 Crear a Batman comiendo esto</button>
+    <p id="bc-load" class="bc-load" hidden><span class="bc-spin"></span> Batman se está sentando a la mesa…</p>
+    <p id="bc-err" class="bc-err" role="alert" hidden></p>
+    <figure id="bc-res" hidden><img id="bc-img" alt="Batman comiendo lo mismo que Felipe"><a id="bc-dl" class="dl" download="batman-come-lo-mismo.jpg">⬇️ Descargar</a></figure>
+  </div>
   </div>
   </div>
   <h3 class="sub">Semana de Felipe</h3>
@@ -631,21 +628,35 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[href^="#
 </script>
 <script>
 (function(){
-  var f=document.getElementById('bp-food'),pl=document.getElementById('bp-place'),o=document.getElementById('bp-out'),acts=document.getElementById('bp-actions');
-  if(!f)return;
-  function armar(){
-    var c=f.value.trim(); if(!c){f.focus();f.placeholder='Escribí una comida primero';return;}
-    var t='Imagen hiperrealista, estilo película, de Batman con su traje negro y su máscara, sentado '+pl.value+', comiendo '+c+' con muchas ganas y cara de que le encanta. Al lado tiene una botellita de agua azul. Formato vertical 3:4, iluminación oscura y dramática, apta para chicos, sin textos ni letras.';
-    o.value=t; acts.hidden=false;
-    document.getElementById('bp-grok').href='https://grok.com/?q='+encodeURIComponent(t);
-    document.getElementById('bp-gpt').href='https://chatgpt.com/?q='+encodeURIComponent(t);
-  }
-  document.getElementById('bp-go').addEventListener('click',armar);
-  f.addEventListener('keydown',function(e){if(e.key==='Enter'){e.preventDefault();armar();}});
-  document.getElementById('bp-copy').addEventListener('click',function(){
-    var b=this; function ok(){b.textContent='✅ Copiado';setTimeout(function(){b.textContent='📋 Copiar';},2000);}
-    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(o.value).then(ok,function(){o.select();document.execCommand('copy');ok();});}
-    else{o.select();document.execCommand('copy');ok();}
+  var PROXY_URL='https://batman-proxy.wonderlab-ar.workers.dev';
+  var $=function(i){return document.getElementById(i)},file=$('bc-file');if(!file)return;
+  var blob=null,lastUrl=null;
+  function show(el,v){el.hidden=!v}
+  function err(t){$('bc-err').textContent=t;show($('bc-err'),1)}
+  function shrink(f){return new Promise(function(ok,ko){var u=URL.createObjectURL(f),im=new Image();
+    im.onload=function(){var k=Math.min(1,1024/Math.max(im.width,im.height)),c=document.createElement('canvas');
+      c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);
+      URL.revokeObjectURL(u);c.toBlob(function(b){b?ok(b):ko()},'image/jpeg',0.85)};
+    im.onerror=function(){URL.revokeObjectURL(u);ko()};im.src=u})}
+  file.addEventListener('change',function(){
+    var f=file.files&&file.files[0];show($('bc-err'),0);show($('bc-res'),0);if(!f)return;
+    shrink(f).then(function(b){blob=b;$('bc-prev').src=URL.createObjectURL(b);show($('bc-prev'),1);show($('bc-go'),1)},
+      function(){err('Uy, no pude abrir esa foto. Probá sacarla de nuevo.')});
+  });
+  $('bc-go').addEventListener('click',function(){
+    if(!blob){err('Primero sacale una foto al plato.');return}
+    var go=this;go.disabled=true;show($('bc-err'),0);show($('bc-res'),0);show($('bc-load'),1);
+    fetch(PROXY_URL,{method:'POST',headers:{'Content-Type':'image/jpeg'},body:blob}).then(function(r){
+      if(r.ok)return r.blob();
+      return r.json().catch(function(){return{}}).then(function(j){throw j.error||r.status});
+    }).then(function(b){
+      if(lastUrl)URL.revokeObjectURL(lastUrl);lastUrl=URL.createObjectURL(b);
+      $('bc-img').src=lastUrl;$('bc-dl').href=lastUrl;show($('bc-res'),1);$('bc-res').scrollIntoView({behavior:'smooth',block:'center'});
+    }).catch(function(e){
+      if(e==='cap')err('Batman ya comió mucho por hoy 🦇 Probá de nuevo mañana.');
+      else if(e==='size')err('La foto es muy pesada. Probá sacar otra.');
+      else err('Uy, Batman no pudo llegar a la mesa. Fijate que tengas internet y probá de nuevo en un ratito.');
+    }).finally(function(){go.disabled=false;show($('bc-load'),0)});
   });
 })();
 </script>
