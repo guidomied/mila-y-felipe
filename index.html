@@ -317,6 +317,11 @@ footer{color:var(--muted);font-size:.85rem;text-align:center;padding:10px 0 40px
 .reto video{display:block;width:100%;aspect-ratio:9/16;background:#000;border-radius:14px;border:2px solid var(--accent)}
 .reto [hidden]{display:none!important}
 @media print{.reto{display:none}}
+/* Música de los chicos */
+.music-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.music-links a{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:58px;padding:14px 16px;border-radius:14px;background:#e9f8ee;border:1px solid #b9e5c8;color:#146734;text-decoration:none;font-weight:700}
+.music-links a:hover,.music-links a:focus-visible{background:#d2f2de;outline:2px solid #16813e;outline-offset:2px}
+.music-links small{font-size:.75rem;font-weight:600;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -341,6 +346,7 @@ footer{color:var(--muted);font-size:.85rem;text-align:center;padding:10px 0 40px
     <li><a href="#felipe">Felipe</a></li>
     <li><a href="#batman">Batman</a></li>
     <li><a href="#reto">Reto de papá</a></li>
+    <li><a href="#musica">Música</a></li>
     <li><a href="#recomendaciones">Salir a comer</a></li>
     <li><a href="#medicacion">Medicación</a></li>
     <li><a href="#documentos">Documentos</a></li>
@@ -481,6 +487,17 @@ footer{color:var(--muted);font-size:.85rem;text-align:center;padding:10px 0 40px
   <p id="rt-err" class="rt-err" role="alert" hidden></p>
   <p id="rt-cap" class="rt-cap" hidden>Papá ya grabó todos los retos de hoy 😅 Mañana puede grabar más. Mientras tanto, un reto en vivo de los abuelos también funciona.</p>
   <figure id="rt-res" hidden><video id="rt-vid" playsinline controls preload="metadata"></video><a id="rt-dl" class="rt-big" download="reto-de-papa.mp4">⬇️ Descargar video</a></figure>
+</section>
+
+<!-- MÚSICA -->
+<section id="musica" class="card" aria-labelledby="h-musica" style="margin-top:16px">
+  <div class="sec-head"><span class="sec-ico" style="background:#e9f8ee" aria-hidden="true">🎵</span><h2 id="h-musica">Música que escuchan los chicos</h2></div>
+  <div class="music-links">
+    <a href="https://open.spotify.com/artist/32MqW6QPGJov4Vtl2xYs7a" target="_blank" rel="noopener noreferrer"><span>Vuelta Canela</span><small>Spotify ↗</small></a>
+    <a href="https://open.spotify.com/album/6notdj85QIGeqR1zKqT3Oh" target="_blank" rel="noopener noreferrer"><span>Descendants</span><small>Spotify ↗</small></a>
+    <a href="https://open.spotify.com/artist/2mvVgc0UMgFwXGktcNmA6l" target="_blank" rel="noopener noreferrer"><span>Soy Luna</span><small>Spotify ↗</small></a>
+    <a href="https://open.spotify.com/artist/0VX5Df1JG4Y84sGvKjkcrG" target="_blank" rel="noopener noreferrer"><span>Margarita (la serie)</span><small>Spotify ↗</small></a>
+  </div>
 </section>
 
 <!-- RECOMENDACIONES -->
