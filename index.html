@@ -277,9 +277,11 @@ footer{color:var(--muted);font-size:.85rem;text-align:center;padding:10px 0 40px
 .bat-gal figure{flex:0 0 72%;max-width:260px;margin:0;scroll-snap-align:start;background:#0d0e12;border:1px solid #f5c518;border-radius:12px;overflow:hidden}
 .bat-gal img{display:block;width:100%;height:auto;aspect-ratio:3/4;object-fit:cover}
 .bat-gal figcaption{padding:6px 10px;color:#f5c518;font-weight:700;font-size:.9rem}
-@media print{.bat-gal .gal{flex-wrap:wrap}.bat-gal figure{flex:0 0 30%}}
-.bat-gal figcaption{display:flex;justify-content:space-between;align-items:center;gap:8px}
-.bat-gal a.dl{flex:none;background:#f5c518;color:#14161c;text-decoration:none;font-size:.8rem;font-weight:800;padding:5px 9px;border-radius:999px}
+@media print{.bat-gal .gal{flex-wrap:wrap}.bat-gal figure{flex:0 0 30%}.bat-gal .save-note{display:none}}
+.bat-gal figcaption{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:6px 8px}
+.bat-gal figcaption span{flex:1 1 auto;min-width:0}
+.bat-gal a.dl{flex:none;margin-left:auto;white-space:nowrap;background:#f5c518;color:#14161c;text-decoration:none;font-size:.8rem;font-weight:800;padding:5px 9px;border-radius:999px}
+.bat-gal .save-note{margin:0 2px 2px;font-size:.8rem;font-weight:500;line-height:1.35;color:#d8d4c6}
 .bat-cam{margin-top:10px;padding-top:10px;border-top:1px dashed #f5c51866}
 .bat-cam .bc-big{display:block;width:100%;box-sizing:border-box;margin-top:10px;background:#f5c518;color:#14161c;border:0;border-radius:14px;padding:16px;font:inherit;font-size:1.15rem;font-weight:800;text-align:center;cursor:pointer}
 .bat-cam #bc-prev{display:block;max-width:100%;max-height:280px;margin:12px auto 0;border:1px solid #f5c518;border-radius:12px}
@@ -458,12 +460,13 @@ footer{color:var(--muted);font-size:.85rem;text-align:center;padding:10px 0 40px
   <p class="bat-lead">Para convencer a Felipe de que coma.</p>
   <div class="bat-gal">
   <div class="gal">
-    <figure><img src="batman/batman-1.jpg" alt="Batman comiendo milanesa con puré y tomatitos" loading="lazy" width="540" height="720"><figcaption><span>Milanesa con puré y tomatitos</span><a class="dl" href="batman/full/batman-1.jpg" download="batman-comiendo-1.jpg" aria-label="Descargar foto: Milanesa con puré y tomatitos">⬇️ Descargar</a></figcaption></figure>
-    <figure><img src="batman/batman-2.jpg" alt="Batman comiendo fideos con tuco" loading="lazy" width="540" height="720"><figcaption><span>Fideos con tuco</span><a class="dl" href="batman/full/batman-2.jpg" download="batman-comiendo-2.jpg" aria-label="Descargar foto: Fideos con tuco">⬇️ Descargar</a></figcaption></figure>
-    <figure><img src="batman/batman-3.jpg" alt="Batman comiendo sopa" loading="lazy" width="540" height="720"><figcaption><span>Sopa</span><a class="dl" href="batman/full/batman-3.jpg" download="batman-comiendo-3.jpg" aria-label="Descargar foto: Sopa">⬇️ Descargar</a></figcaption></figure>
-    <figure><img src="batman/batman-4.jpg" alt="Batman comiendo choclo" loading="lazy" width="540" height="720"><figcaption><span>Choclo</span><a class="dl" href="batman/full/batman-4.jpg" download="batman-comiendo-4.jpg" aria-label="Descargar foto: Choclo">⬇️ Descargar</a></figcaption></figure>
-    <figure><img src="batman/batman-5.jpg" alt="Batman comiendo frutillas" loading="lazy" width="540" height="720"><figcaption><span>Frutillas</span><a class="dl" href="batman/full/batman-5.jpg" download="batman-comiendo-5.jpg" aria-label="Descargar foto: Frutillas">⬇️ Descargar</a></figcaption></figure>
+    <figure><img src="batman/batman-1.jpg" alt="Batman comiendo milanesa con puré y tomatitos" loading="lazy" width="540" height="720"><figcaption><span>Milanesa con puré y tomatitos</span><a class="dl" href="batman/full/batman-1.jpg" download="batman-comiendo-1.jpg" aria-label="Guardar en Fotos: Milanesa con puré y tomatitos">📲 Guardar en Fotos</a></figcaption></figure>
+    <figure><img src="batman/batman-2.jpg" alt="Batman comiendo fideos con tuco" loading="lazy" width="540" height="720"><figcaption><span>Fideos con tuco</span><a class="dl" href="batman/full/batman-2.jpg" download="batman-comiendo-2.jpg" aria-label="Guardar en Fotos: Fideos con tuco">📲 Guardar en Fotos</a></figcaption></figure>
+    <figure><img src="batman/batman-3.jpg" alt="Batman comiendo sopa" loading="lazy" width="540" height="720"><figcaption><span>Sopa</span><a class="dl" href="batman/full/batman-3.jpg" download="batman-comiendo-3.jpg" aria-label="Guardar en Fotos: Sopa">📲 Guardar en Fotos</a></figcaption></figure>
+    <figure><img src="batman/batman-4.jpg" alt="Batman comiendo choclo" loading="lazy" width="540" height="720"><figcaption><span>Choclo</span><a class="dl" href="batman/full/batman-4.jpg" download="batman-comiendo-4.jpg" aria-label="Guardar en Fotos: Choclo">📲 Guardar en Fotos</a></figcaption></figure>
+    <figure><img src="batman/batman-5.jpg" alt="Batman comiendo frutillas" loading="lazy" width="540" height="720"><figcaption><span>Frutillas</span><a class="dl" href="batman/full/batman-5.jpg" download="batman-comiendo-5.jpg" aria-label="Guardar en Fotos: Frutillas">📲 Guardar en Fotos</a></figcaption></figure>
   </div>
+  <p class="save-note">En el iPhone, tocá «Guardar imagen» para que quede en Fotos.</p>
   </div>
   <div class="bat-cam">
     <h3 class="sub">📸 Batman come lo mismo que Felipe</h3>
@@ -474,7 +477,7 @@ footer{color:var(--muted);font-size:.85rem;text-align:center;padding:10px 0 40px
     <button type="button" id="bc-go" class="bc-big" hidden>🦇 Crear a Batman comiendo esto</button>
     <p id="bc-load" class="bc-load" hidden><span class="bc-spin"></span> Batman se está sentando a la mesa…</p>
     <p id="bc-err" class="bc-err" role="alert" hidden></p>
-    <figure id="bc-res" hidden><img id="bc-img" alt="Batman comiendo lo mismo que Felipe"><a id="bc-dl" class="dl" download="batman-come-lo-mismo.jpg">⬇️ Descargar</a></figure>
+    <figure id="bc-res" hidden><img id="bc-img" alt="Batman comiendo lo mismo que Felipe"><a id="bc-dl" class="dl" download="batman-come-lo-mismo.jpg">📲 Guardar en Fotos</a></figure>
   </div>
 </section>
 
@@ -756,6 +759,65 @@ document.addEventListener('click',function(e){var a=e.target.closest('a[href^="#
       else if(e==='size')err('La foto es muy pesada. Probá sacar otra.');
       else err('Uy, Batman no pudo llegar a la mesa. Fijate que tengas internet y probá de nuevo en un ratito.');
     }).finally(function(){go.disabled=false;show($('bc-load'),0)});
+  });
+})();
+</script>
+<script>
+// Fotos de Batman: en el iPhone la hoja de compartir tiene «Guardar imagen» (va a Fotos).
+// Sin archivos compartibles, el enlace descarga como siempre (href + download).
+(function(){
+  var root=document.getElementById('batman');
+  if(!root||!navigator.share||!navigator.canShare||!window.File||!window.fetch)return;
+  function canShareFiles(){
+    try{
+      var sample=new File([new Uint8Array([0xFF,0xD8,0xFF,0xD9])],'foto.jpg',{type:'image/jpeg'});
+      return !!navigator.canShare({files:[sample]});
+    }catch(e){return false}
+  }
+  function toFile(blob,name){
+    var t=(blob.type||'').split(';')[0].trim().toLowerCase();
+    if(t==='image/jpg')t='image/jpeg';
+    if(t.indexOf('image/')!==0){
+      if(t.indexOf('text/')===0||t==='application/json')throw new Error('not-image');
+      var lower=(name||'').toLowerCase();
+      if(/\.png$/.test(lower))t='image/png';
+      else if(/\.webp$/.test(lower))t='image/webp';
+      else if(/\.gif$/.test(lower))t='image/gif';
+      else t='image/jpeg';
+    }
+    var ext=t==='image/png'?'.png':t==='image/webp'?'.webp':t==='image/gif'?'.gif':'.jpg';
+    if(!name)name='batman'+ext;
+    else if(name.toLowerCase().slice(-ext.length)!==ext)name=name.replace(/\.[^.]+$/,'')+ext;
+    return new File([blob],name,{type:t,lastModified:Date.now()});
+  }
+  function fallback(a){
+    a.dataset.saveSkip='1';
+    a.click();
+    delete a.dataset.saveSkip;
+  }
+  root.querySelectorAll('a.dl').forEach(function(a){
+    a.addEventListener('click',function(e){
+      if(a.dataset.saveSkip==='1')return;
+      if(e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+      var href=a.getAttribute('href');
+      if(!href)return;
+      if(a.dataset.saveBusy==='1'){e.preventDefault();return}
+      if(!canShareFiles())return;
+      e.preventDefault();
+      a.dataset.saveBusy='1';
+      var name=a.getAttribute('download')||'batman.jpg';
+      fetch(href).then(function(r){
+        if(!r.ok)throw new Error('http');
+        return r.blob();
+      }).then(function(blob){
+        var file=toFile(blob,name),data={files:[file]};
+        if(!navigator.canShare(data))throw new Error('no-share');
+        return navigator.share(data);
+      }).catch(function(err){
+        if(err&&err.name==='AbortError')return;
+        fallback(a);
+      }).then(function(){a.dataset.saveBusy=''});
+    });
   });
 })();
 </script>
