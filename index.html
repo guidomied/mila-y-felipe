@@ -320,6 +320,12 @@ footer{color:var(--muted);font-size:.85rem;text-align:center;padding:10px 0 40px
 .reto [hidden]{display:none!important}
 @media print{.reto{display:none}}
 /* Música de los chicos */
+.music-playlist{margin:0 0 14px}
+.music-playlist-btn{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:58px;padding:14px 16px;border-radius:14px;background:#1DB954;border:1px solid #169c46;color:#fff;text-decoration:none;font-weight:800;box-shadow:0 2px 8px rgba(29,185,84,.28)}
+.music-playlist-btn:hover,.music-playlist-btn:focus-visible{background:#1ed760;outline:2px solid #146734;outline-offset:2px}
+.music-playlist-btn small{font-size:.75rem;font-weight:600;white-space:nowrap;opacity:.95}
+.music-playlist-embed{margin-top:12px;border-radius:14px;overflow:hidden;border:1px solid #b9e5c8;background:#000;line-height:0}
+.music-playlist-embed iframe{display:block;width:100%;height:152px;border:0}
 .music-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
 .music-links a{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:58px;padding:14px 16px;border-radius:14px;background:#e9f8ee;border:1px solid #b9e5c8;color:#146734;text-decoration:none;font-weight:700}
 .music-links a:hover,.music-links a:focus-visible{background:#d2f2de;outline:2px solid #16813e;outline-offset:2px}
@@ -498,6 +504,12 @@ footer{color:var(--muted);font-size:.85rem;text-align:center;padding:10px 0 40px
 <!-- MÚSICA -->
 <section id="musica" class="card" aria-labelledby="h-musica" style="margin-top:16px">
   <div class="sec-head"><span class="sec-ico" style="background:#e9f8ee" aria-hidden="true">🎵</span><h2 id="h-musica">Música que escuchan los chicos</h2></div>
+  <div class="music-playlist">
+    <a class="music-playlist-btn" href="https://open.spotify.com/playlist/6e4AhRwA2pIqCl40uyyLTj" target="_blank" rel="noopener noreferrer"><span>▶️ Playlist Mila y Felipe</span><small>Spotify ↗</small></a>
+    <div class="music-playlist-embed">
+      <iframe title="Playlist Mila y Felipe en Spotify" src="https://open.spotify.com/embed/playlist/6e4AhRwA2pIqCl40uyyLTj" width="100%" height="152" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+    </div>
+  </div>
   <div class="music-links">
     <a href="https://open.spotify.com/artist/32MqW6QPGJov4Vtl2xYs7a" target="_blank" rel="noopener noreferrer"><span>Vuelta Canela</span><small>Spotify ↗</small></a>
     <a href="https://open.spotify.com/album/6notdj85QIGeqR1zKqT3Oh" target="_blank" rel="noopener noreferrer"><span>Descendants</span><small>Spotify ↗</small></a>
